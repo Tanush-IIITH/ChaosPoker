@@ -555,6 +555,14 @@ int main() {
     if (const char* env = std::getenv("OPT_PREFLOP_MULT_EQ"))   HP.PREFLOP_MULT_EQ = std::stod(env);
     if (const char* env = std::getenv("OPT_MULTIWAY_BASE_EXP")) HP.MULTIWAY_BASE_EXP = std::stod(env);
     if (const char* env = std::getenv("OPT_MULTIWAY_STEP_EXP")) HP.MULTIWAY_STEP_EXP = std::stod(env);
+    if (const char* env = std::getenv("OPT_MC_ROLLOUTS_SWAP_PRE"))       HP.MC_ROLLOUTS_SWAP_PRE = std::stoi(env);
+    if (const char* env = std::getenv("OPT_MC_ROLLOUTS_SWAP_POST"))      HP.MC_ROLLOUTS_SWAP_POST = std::stoi(env);
+    if (const char* env = std::getenv("OPT_MC_ROLLOUTS_VOTE"))           HP.MC_ROLLOUTS_VOTE = std::stoi(env);
+    if (const char* env = std::getenv("OPT_MC_ROLLOUTS_ACTION_DEFAULT")) HP.MC_ROLLOUTS_ACTION_DEFAULT = std::stoi(env);
+    if (const char* env = std::getenv("OPT_MC_ROLLOUTS_ACTION_RIVER"))   HP.MC_ROLLOUTS_ACTION_RIVER = std::stoi(env);
+    if (const char* env = std::getenv("OPT_PREFLOP_MIN_EQ"))             HP.PREFLOP_MIN_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_PREFLOP_MAX_EQ"))             HP.PREFLOP_MAX_EQ = std::stod(env);
+
 
     // 3. SWAP_PROMPT
     if (const char* env = std::getenv("OPT_SWAP_PRE_STAY_CHEN")) HP.SWAP_PRE_STAY_CHEN = std::stod(env);
@@ -562,6 +570,7 @@ int main() {
     if (const char* env = std::getenv("OPT_SWAP_PRE_COST_FRACTION")) HP.SWAP_PRE_COST_FRACTION = std::stoi(env);
     if (const char* env = std::getenv("OPT_SWAP_POST_MAX_EQ"))   HP.SWAP_POST_MAX_EQ = std::stod(env);
     if (const char* env = std::getenv("OPT_SWAP_POST_COST_FRACTION")) HP.SWAP_POST_COST_FRACTION = std::stoi(env);
+
 
     // 4. VOTE_PROMPT
     if (const char* env = std::getenv("OPT_VOTE_YES_MIN_EQ"))    HP.VOTE_YES_MIN_EQ = std::stod(env);
@@ -582,6 +591,12 @@ int main() {
     if (const char* env = std::getenv("OPT_ACT_BLUFF_NIT_MASSIVE")) HP.ACT_BLUFF_NIT_MASSIVE = std::stod(env);
     if (const char* env = std::getenv("OPT_ACT_BLUFF_NIT_3WAY")) HP.ACT_BLUFF_NIT_3WAY = std::stod(env);
     if (const char* env = std::getenv("OPT_ACT_BLUFF_SIZE"))     HP.ACT_BLUFF_SIZE = std::stod(env);
+    if (const char* env = std::getenv("OPT_ACT_VAL_THIN_FREQ_MAX"))      HP.ACT_VAL_THIN_FREQ_MAX = std::stoi(env);
+    if (const char* env = std::getenv("OPT_ACT_BLUFF_MIN_STREET"))       HP.ACT_BLUFF_MIN_STREET = std::stoi(env);
+    if (const char* env = std::getenv("OPT_ACT_BLUFF_SAFE_STACK_MULT"))  HP.ACT_BLUFF_SAFE_STACK_MULT = std::stoi(env);
+    if (const char* env = std::getenv("OPT_ACT_BLUFF_FREQ_MASSIVE"))     HP.ACT_BLUFF_FREQ_MASSIVE = std::stoi(env);
+    if (const char* env = std::getenv("OPT_ACT_BLUFF_FREQ_STD"))         HP.ACT_BLUFF_FREQ_STD = std::stoi(env);
+    if (const char* env = std::getenv("OPT_ACT_BLUFF_FREQ_3WAY"))        HP.ACT_BLUFF_FREQ_3WAY = std::stoi(env);
 
     // 6. ACTION_PROMPT (Defender)
     if (const char* env = std::getenv("OPT_DEF_RERAISE_MONSTER_EQ")) HP.DEF_RERAISE_MONSTER_EQ = std::stod(env);
@@ -593,10 +608,15 @@ int main() {
     if (const char* env = std::getenv("OPT_DEF_SURVIVAL_EQ"))        HP.DEF_SURVIVAL_EQ = std::stod(env);
     if (const char* env = std::getenv("OPT_DEF_IMPLIED_MARGIN"))     HP.DEF_IMPLIED_MARGIN = std::stod(env);
     if (const char* env = std::getenv("OPT_DEF_BLUFF_RAISE_MULT"))   HP.DEF_BLUFF_RAISE_MULT = std::stoi(env);
+    if (const char* env = std::getenv("OPT_DEF_IMPLIED_STACK_FRACTION")) HP.DEF_IMPLIED_STACK_FRACTION = std::stoi(env);
 
     // 7. Opponent Profiling
     if (const char* env = std::getenv("OPT_PROF_DEFAULT_FOLD"))      HP.PROF_DEFAULT_FOLD = std::stod(env);
     if (const char* env = std::getenv("OPT_PROF_DEFAULT_AGG"))       HP.PROF_DEFAULT_AGG = std::stod(env);
+    if (const char* env = std::getenv("OPT_PROF_MIN_HANDS"))             HP.PROF_MIN_HANDS = std::stoi(env);
+    if (const char* env = std::getenv("OPT_PROF_RAISE_POT_CAP"))         HP.PROF_RAISE_POT_CAP = std::stod(env);
+    if (const char* env = std::getenv("OPT_PROF_ALLIN_POT_CAP"))         HP.PROF_ALLIN_POT_CAP = std::stod(env);
+    if (const char* env = std::getenv("OPT_PROF_MIN_ACTIONS"))           HP.PROF_MIN_ACTIONS = std::stoi(env);
 
     std::mt19937 rng(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 
