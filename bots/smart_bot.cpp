@@ -538,15 +538,65 @@ int main() {
     std::cin.tie(nullptr);
 
     // Override hyperparameters via environment variables if present
-    if (const char* env = std::getenv("OPT_BLUFF_THRESH"))     HP.BLUFF_AGGR_THRESH = std::stod(env);
-    if (const char* env = std::getenv("OPT_MIN_FOLD_RATE"))    HP.MIN_FOLD_RATE_BLUFF = std::stod(env);
+    // Override hyperparameters via environment variables if present
+    
+    // 1. Aggression Stats
     if (const char* env = std::getenv("OPT_RAISE_BASE_WEIGHT")) HP.RAISE_BASE_WEIGHT = std::stod(env);
-    if (const char* env = std::getenv("OPT_RAISE_POT_WEIGHT")) HP.RAISE_POT_WEIGHT = std::stod(env);
+    if (const char* env = std::getenv("OPT_BLUFF_THRESH"))      HP.BLUFF_AGGR_THRESH = std::stod(env);
+    if (const char* env = std::getenv("OPT_MIN_FOLD_RATE"))     HP.MIN_FOLD_RATE_BLUFF = std::stod(env);
+    if (const char* env = std::getenv("OPT_RAISE_POT_WEIGHT"))  HP.RAISE_POT_WEIGHT = std::stod(env);
     if (const char* env = std::getenv("OPT_RAISE_STACK_WEIGHT")) HP.RAISE_STACK_WEIGHT = std::stod(env);
-    if (const char* env = std::getenv("OPT_ALLIN_BASE_WEIGHT"))  HP.ALLIN_BASE_WEIGHT = std::stod(env);
-    if (const char* env = std::getenv("OPT_ALLIN_POT_WEIGHT"))   HP.ALLIN_POT_WEIGHT = std::stod(env);
+    if (const char* env = std::getenv("OPT_ALLIN_BASE_WEIGHT")) HP.ALLIN_BASE_WEIGHT = std::stod(env);
+    if (const char* env = std::getenv("OPT_ALLIN_POT_WEIGHT"))  HP.ALLIN_POT_WEIGHT = std::stod(env);
+
+    // 2. Engine & Math
+    if (const char* env = std::getenv("OPT_CHEN_DIVISOR"))      HP.CHEN_DIVISOR = std::stod(env);
+    if (const char* env = std::getenv("OPT_PREFLOP_BASE_EQ"))   HP.PREFLOP_BASE_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_PREFLOP_MULT_EQ"))   HP.PREFLOP_MULT_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_MULTIWAY_BASE_EXP")) HP.MULTIWAY_BASE_EXP = std::stod(env);
+    if (const char* env = std::getenv("OPT_MULTIWAY_STEP_EXP")) HP.MULTIWAY_STEP_EXP = std::stod(env);
+
+    // 3. SWAP_PROMPT
+    if (const char* env = std::getenv("OPT_SWAP_PRE_STAY_CHEN")) HP.SWAP_PRE_STAY_CHEN = std::stod(env);
+    if (const char* env = std::getenv("OPT_SWAP_PRE_WEAK_CHEN")) HP.SWAP_PRE_WEAK_CHEN = std::stod(env);
+    if (const char* env = std::getenv("OPT_SWAP_PRE_COST_FRACTION")) HP.SWAP_PRE_COST_FRACTION = std::stoi(env);
+    if (const char* env = std::getenv("OPT_SWAP_POST_MAX_EQ"))   HP.SWAP_POST_MAX_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_SWAP_POST_COST_FRACTION")) HP.SWAP_POST_COST_FRACTION = std::stoi(env);
+
+    // 4. VOTE_PROMPT
+    if (const char* env = std::getenv("OPT_VOTE_YES_MIN_EQ"))    HP.VOTE_YES_MIN_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_VOTE_YES_NOISE_MIN")) HP.VOTE_YES_NOISE_MIN = std::stod(env);
+    if (const char* env = std::getenv("OPT_VOTE_YES_NOISE_MAX")) HP.VOTE_YES_NOISE_MAX = std::stod(env);
+    if (const char* env = std::getenv("OPT_VOTE_NO_MAX_EQ"))     HP.VOTE_NO_MAX_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_VOTE_NO_NOISE_MIN"))  HP.VOTE_NO_NOISE_MIN = std::stod(env);
+    if (const char* env = std::getenv("OPT_VOTE_NO_NOISE_MAX"))  HP.VOTE_NO_NOISE_MAX = std::stod(env);
+    if (const char* env = std::getenv("OPT_VOTE_MIN_POT_BB_MULT")) HP.VOTE_MIN_POT_BB_MULT = std::stoi(env);
+
+    // 5. ACTION_PROMPT (Aggressor)
     if (const char* env = std::getenv("OPT_ACT_VAL_MONSTER_BASE_FRAC")) HP.ACT_VAL_MONSTER_BASE_FRAC = std::stod(env);
     if (const char* env = std::getenv("OPT_ACT_VAL_MONSTER_EQ_MULT")) HP.ACT_VAL_MONSTER_EQ_MULT = std::stod(env);
+    if (const char* env = std::getenv("OPT_ACT_VAL_MONSTER_EQ")) HP.ACT_VAL_MONSTER_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_ACT_VAL_THIN_EQ"))    HP.ACT_VAL_THIN_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_ACT_VAL_THIN_SIZE"))  HP.ACT_VAL_THIN_SIZE = std::stod(env);
+    if (const char* env = std::getenv("OPT_ACT_BLUFF_MAX_EQ"))   HP.ACT_BLUFF_MAX_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_ACT_BLUFF_NIT_MASSIVE")) HP.ACT_BLUFF_NIT_MASSIVE = std::stod(env);
+    if (const char* env = std::getenv("OPT_ACT_BLUFF_NIT_3WAY")) HP.ACT_BLUFF_NIT_3WAY = std::stod(env);
+    if (const char* env = std::getenv("OPT_ACT_BLUFF_SIZE"))     HP.ACT_BLUFF_SIZE = std::stod(env);
+
+    // 6. ACTION_PROMPT (Defender)
+    if (const char* env = std::getenv("OPT_DEF_RERAISE_MONSTER_EQ")) HP.DEF_RERAISE_MONSTER_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_DEF_ALLIN_MONSTER_EQ"))   HP.DEF_ALLIN_MONSTER_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_DEF_RERAISE_SIZE"))       HP.DEF_RERAISE_SIZE = std::stod(env);
+    if (const char* env = std::getenv("OPT_DEF_EV_MARGIN"))          HP.DEF_EV_MARGIN = std::stod(env);
+    if (const char* env = std::getenv("OPT_DEF_VAL_RAISE_EQ"))       HP.DEF_VAL_RAISE_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_DEF_VAL_RAISE_SIZE"))     HP.DEF_VAL_RAISE_SIZE = std::stod(env);
+    if (const char* env = std::getenv("OPT_DEF_SURVIVAL_EQ"))        HP.DEF_SURVIVAL_EQ = std::stod(env);
+    if (const char* env = std::getenv("OPT_DEF_IMPLIED_MARGIN"))     HP.DEF_IMPLIED_MARGIN = std::stod(env);
+    if (const char* env = std::getenv("OPT_DEF_BLUFF_RAISE_MULT"))   HP.DEF_BLUFF_RAISE_MULT = std::stoi(env);
+
+    // 7. Opponent Profiling
+    if (const char* env = std::getenv("OPT_PROF_DEFAULT_FOLD"))      HP.PROF_DEFAULT_FOLD = std::stod(env);
+    if (const char* env = std::getenv("OPT_PROF_DEFAULT_AGG"))       HP.PROF_DEFAULT_AGG = std::stod(env);
 
     std::mt19937 rng(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 
