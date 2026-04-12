@@ -1,0 +1,287 @@
+[INFO] Resuming from saved config: best_hp_config.json
+==============================================================
+ COORDINATE DESCENT HYPERPARAMETER OPTIMIZER
+ Passes:              3
+ HPs to tune:         9
+ Candidates per HP:   5
+ Games per candidate: 100
+ Win threshold:       52%
+==============================================================
+
+==============================================================
+ PASS 1 of 3
+==============================================================
+
+[1/9] Tuning OPT_RAISE_BASE_WEIGHT (current=1.5)
+  Candidates: [0.0, 0.5, 1.0, 1.5, 2.0]
+  ✓      0.0 ->  52.0%  (52/100)  [0.4s]
+         0.5 ->  44.0%  (44/100)  [0.4s]
+         1.0 ->  45.0%  (45/100)  [0.3s]
+         1.5 -> (current, skip)
+  ✓      2.0 ->  53.0%  (53/100)  [0.4s]
+  => PROMOTED OPT_RAISE_BASE_WEIGHT: 1.5 -> 2.0  (win rate 53.0%)
+
+[2/9] Tuning OPT_BLUFF_THRESH (current=0.3)
+  Candidates: [0.15, 0.2, 0.25, 0.3, 0.35]
+  ✓     0.15 ->  55.0%  (55/100)  [0.3s]
+  ✓      0.2 ->  53.0%  (53/100)  [0.3s]
+  ✓     0.25 ->  53.0%  (53/100)  [0.4s]
+         0.3 -> (current, skip)
+  ✓     0.35 ->  52.0%  (52/100)  [0.3s]
+  => PROMOTED OPT_BLUFF_THRESH: 0.3 -> 0.15  (win rate 55.0%)
+
+[3/9] Tuning OPT_MIN_FOLD_RATE (current=0.45)
+  Candidates: [0.3, 0.35, 0.4, 0.45, 0.55]
+  ✓      0.3 ->  54.0%  (54/100)  [0.3s]
+        0.35 ->  40.0%  (40/100)  [0.4s]
+         0.4 ->  51.0%  (51/100)  [0.4s]
+        0.45 -> (current, skip)
+        0.55 ->  49.0%  (49/100)  [0.4s]
+  => PROMOTED OPT_MIN_FOLD_RATE: 0.45 -> 0.3  (win rate 54.0%)
+
+[4/9] Tuning OPT_RAISE_POT_WEIGHT (current=0.75)
+  Candidates: [0.5, 0.75, 1.0, 1.25, 1.5]
+  ✓      0.5 ->  59.0%  (59/100)  [0.4s]
+        0.75 -> (current, skip)
+  ✓      1.0 ->  52.0%  (52/100)  [0.4s]
+        1.25 ->  43.0%  (43/100)  [0.4s]
+  ✓      1.5 ->  58.0%  (58/100)  [0.3s]
+  => PROMOTED OPT_RAISE_POT_WEIGHT: 0.75 -> 0.5  (win rate 59.0%)
+
+[5/9] Tuning OPT_RAISE_STACK_WEIGHT (current=1.5)
+  Candidates: [0.5, 0.75, 1.0, 1.25, 1.5]
+         0.5 ->  46.0%  (46/100)  [0.4s]
+  ✓     0.75 ->  58.0%  (58/100)  [0.4s]
+  ✓      1.0 ->  56.0%  (56/100)  [0.4s]
+        1.25 ->  42.0%  (42/100)  [0.4s]
+         1.5 -> (current, skip)
+  => PROMOTED OPT_RAISE_STACK_WEIGHT: 1.5 -> 0.75  (win rate 58.0%)
+
+[6/9] Tuning OPT_ALLIN_BASE_WEIGHT (current=3.0)
+  Candidates: [0.5, 1.0, 1.5, 2.0, 3.0]
+         0.5 ->  48.0%  (48/100)  [0.4s]
+  ✓      1.0 ->  56.0%  (56/100)  [0.4s]
+         1.5 ->  46.0%  (46/100)  [0.3s]
+  ✓      2.0 ->  53.0%  (53/100)  [0.4s]
+         3.0 -> (current, skip)
+  => PROMOTED OPT_ALLIN_BASE_WEIGHT: 3.0 -> 1.0  (win rate 56.0%)
+
+[7/9] Tuning OPT_ALLIN_POT_WEIGHT (current=0.5)
+  Candidates: [0.5, 0.75, 1.0, 1.25, 1.5]
+         0.5 -> (current, skip)
+        0.75 ->  49.0%  (49/100)  [0.4s]
+  ✓      1.0 ->  54.0%  (54/100)  [0.4s]
+  ✓     1.25 ->  55.0%  (55/100)  [0.4s]
+  ✓      1.5 ->  54.0%  (54/100)  [0.4s]
+  => PROMOTED OPT_ALLIN_POT_WEIGHT: 0.5 -> 1.25  (win rate 55.0%)
+
+[8/9] Tuning OPT_ACT_VAL_MONSTER_BASE_FRAC (current=0.3)
+  Candidates: [0.3, 0.4, 0.5, 0.6, 0.7]
+         0.3 -> (current, skip)
+  ✓      0.4 ->  55.0%  (55/100)  [0.4s]
+         0.5 ->  50.0%  (50/100)  [0.4s]
+         0.6 ->  49.0%  (49/100)  [0.4s]
+         0.7 ->  46.0%  (46/100)  [0.4s]
+  => PROMOTED OPT_ACT_VAL_MONSTER_BASE_FRAC: 0.3 -> 0.4  (win rate 55.0%)
+
+[9/9] Tuning OPT_ACT_VAL_MONSTER_EQ_MULT (current=3.0)
+  Candidates: [1.0, 1.5, 2.0, 2.5, 3.0]
+         1.0 ->  46.0%  (46/100)  [0.4s]
+         1.5 ->  46.0%  (46/100)  [0.4s]
+         2.0 ->  51.0%  (51/100)  [0.4s]
+         2.5 ->  48.0%  (48/100)  [0.4s]
+         3.0 -> (current, skip)
+  => No improvement for OPT_ACT_VAL_MONSTER_EQ_MULT. Keeping 3.0.
+
+[PASS 1 DONE] Improvements this pass: 8
+==============================================================
+ PASS 2 of 3
+==============================================================
+
+[1/9] Tuning OPT_RAISE_BASE_WEIGHT (current=2.0)
+  Candidates: [0.0, 0.5, 1.0, 1.5, 2.0]
+         0.0 ->  49.0%  (49/100)  [0.4s]
+         0.5 ->  49.0%  (49/100)  [0.5s]
+  ✓      1.0 ->  52.0%  (52/100)  [0.4s]
+         1.5 ->  51.0%  (51/100)  [0.4s]
+         2.0 -> (current, skip)
+  => PROMOTED OPT_RAISE_BASE_WEIGHT: 2.0 -> 1.0  (win rate 52.0%)
+
+[2/9] Tuning OPT_BLUFF_THRESH (current=0.15)
+  Candidates: [0.15, 0.2, 0.25, 0.3, 0.35]
+        0.15 -> (current, skip)
+         0.2 ->  49.0%  (49/100)  [0.5s]
+        0.25 ->  50.0%  (50/100)  [0.4s]
+         0.3 ->  40.0%  (40/100)  [0.4s]
+        0.35 ->  51.0%  (51/100)  [0.5s]
+  => No improvement for OPT_BLUFF_THRESH. Keeping 0.15.
+
+[3/9] Tuning OPT_MIN_FOLD_RATE (current=0.3)
+  Candidates: [0.3, 0.35, 0.4, 0.45, 0.55]
+         0.3 -> (current, skip)
+        0.35 ->  46.0%  (46/100)  [0.5s]
+         0.4 ->  47.0%  (47/100)  [0.4s]
+  ✓     0.45 ->  55.0%  (55/100)  [0.5s]
+        0.55 ->  43.0%  (43/100)  [0.4s]
+  => PROMOTED OPT_MIN_FOLD_RATE: 0.3 -> 0.45  (win rate 55.0%)
+
+[4/9] Tuning OPT_RAISE_POT_WEIGHT (current=0.5)
+  Candidates: [0.5, 0.75, 1.0, 1.25, 1.5]
+         0.5 -> (current, skip)
+  ✓     0.75 ->  52.0%  (52/100)  [0.5s]
+         1.0 ->  45.0%  (45/100)  [0.4s]
+  ✓     1.25 ->  56.0%  (56/100)  [0.5s]
+         1.5 ->  45.0%  (45/100)  [0.5s]
+  => PROMOTED OPT_RAISE_POT_WEIGHT: 0.5 -> 1.25  (win rate 56.0%)
+
+[5/9] Tuning OPT_RAISE_STACK_WEIGHT (current=0.75)
+  Candidates: [0.5, 0.75, 1.0, 1.25, 1.5]
+  ✓      0.5 ->  58.0%  (58/100)  [0.5s]
+        0.75 -> (current, skip)
+  ✓      1.0 ->  52.0%  (52/100)  [0.4s]
+        1.25 ->  49.0%  (49/100)  [0.4s]
+         1.5 ->  48.0%  (48/100)  [0.5s]
+  => PROMOTED OPT_RAISE_STACK_WEIGHT: 0.75 -> 0.5  (win rate 58.0%)
+
+[6/9] Tuning OPT_ALLIN_BASE_WEIGHT (current=1.0)
+  Candidates: [0.5, 1.0, 1.5, 2.0, 3.0]
+  ✓      0.5 ->  52.0%  (52/100)  [0.5s]
+         1.0 -> (current, skip)
+  ✓      1.5 ->  52.0%  (52/100)  [0.5s]
+  ✓      2.0 ->  56.0%  (56/100)  [0.4s]
+  ✓      3.0 ->  58.0%  (58/100)  [0.6s]
+  => PROMOTED OPT_ALLIN_BASE_WEIGHT: 1.0 -> 3.0  (win rate 58.0%)
+
+[7/9] Tuning OPT_ALLIN_POT_WEIGHT (current=1.25)
+  Candidates: [0.5, 0.75, 1.0, 1.25, 1.5]
+         0.5 ->  49.0%  (49/100)  [0.5s]
+        0.75 ->  44.0%  (44/100)  [0.5s]
+         1.0 ->  43.0%  (43/100)  [0.5s]
+        1.25 -> (current, skip)
+         1.5 ->  48.0%  (48/100)  [0.5s]
+  => No improvement for OPT_ALLIN_POT_WEIGHT. Keeping 1.25.
+
+[8/9] Tuning OPT_ACT_VAL_MONSTER_BASE_FRAC (current=0.4)
+  Candidates: [0.3, 0.4, 0.5, 0.6, 0.7]
+         0.3 ->  48.0%  (48/100)  [0.4s]
+         0.4 -> (current, skip)
+  ✓      0.5 ->  53.0%  (53/100)  [0.4s]
+         0.6 ->  49.0%  (49/100)  [0.4s]
+  ✓      0.7 ->  56.0%  (56/100)  [0.5s]
+  => PROMOTED OPT_ACT_VAL_MONSTER_BASE_FRAC: 0.4 -> 0.7  (win rate 56.0%)
+
+[9/9] Tuning OPT_ACT_VAL_MONSTER_EQ_MULT (current=3.0)
+  Candidates: [1.0, 1.5, 2.0, 2.5, 3.0]
+         1.0 ->  50.0%  (50/100)  [0.4s]
+  ✓      1.5 ->  54.0%  (54/100)  [0.4s]
+         2.0 ->  51.0%  (51/100)  [0.5s]
+         2.5 ->  51.0%  (51/100)  [0.5s]
+         3.0 -> (current, skip)
+  => PROMOTED OPT_ACT_VAL_MONSTER_EQ_MULT: 3.0 -> 1.5  (win rate 54.0%)
+
+[PASS 2 DONE] Improvements this pass: 7
+==============================================================
+ PASS 3 of 3
+==============================================================
+
+[1/9] Tuning OPT_RAISE_BASE_WEIGHT (current=1.0)
+  Candidates: [0.0, 0.5, 1.0, 1.5, 2.0]
+         0.0 ->  45.0%  (45/100)  [0.4s]
+  ✓      0.5 ->  56.0%  (56/100)  [0.5s]
+         1.0 -> (current, skip)
+  ✓      1.5 ->  52.0%  (52/100)  [0.5s]
+         2.0 ->  50.0%  (50/100)  [0.4s]
+  => PROMOTED OPT_RAISE_BASE_WEIGHT: 1.0 -> 0.5  (win rate 56.0%)
+
+[2/9] Tuning OPT_BLUFF_THRESH (current=0.15)
+  Candidates: [0.15, 0.2, 0.25, 0.3, 0.35]
+        0.15 -> (current, skip)
+         0.2 ->  44.0%  (44/100)  [0.5s]
+  ✓     0.25 ->  54.0%  (54/100)  [0.5s]
+  ✓      0.3 ->  56.0%  (56/100)  [0.5s]
+        0.35 ->  45.0%  (45/100)  [0.5s]
+  => PROMOTED OPT_BLUFF_THRESH: 0.15 -> 0.3  (win rate 56.0%)
+
+[3/9] Tuning OPT_MIN_FOLD_RATE (current=0.45)
+  Candidates: [0.3, 0.35, 0.4, 0.45, 0.55]
+         0.3 ->  49.0%  (49/100)  [0.5s]
+  ✓     0.35 ->  57.0%  (57/100)  [0.5s]
+  ✓      0.4 ->  55.0%  (55/100)  [0.5s]
+        0.45 -> (current, skip)
+  ✓     0.55 ->  54.0%  (54/100)  [0.4s]
+  => PROMOTED OPT_MIN_FOLD_RATE: 0.45 -> 0.35  (win rate 57.0%)
+
+[4/9] Tuning OPT_RAISE_POT_WEIGHT (current=1.25)
+  Candidates: [0.5, 0.75, 1.0, 1.25, 1.5]
+         0.5 ->  47.0%  (47/100)  [0.4s]
+        0.75 ->  47.0%  (47/100)  [0.4s]
+         1.0 ->  46.0%  (46/100)  [0.4s]
+        1.25 -> (current, skip)
+         1.5 ->  40.0%  (40/100)  [0.7s]
+  => No improvement for OPT_RAISE_POT_WEIGHT. Keeping 1.25.
+
+[5/9] Tuning OPT_RAISE_STACK_WEIGHT (current=0.5)
+  Candidates: [0.5, 0.75, 1.0, 1.25, 1.5]
+         0.5 -> (current, skip)
+  ✓     0.75 ->  55.0%  (55/100)  [0.7s]
+  ✓      1.0 ->  52.0%  (52/100)  [0.7s]
+  ✓     1.25 ->  52.0%  (52/100)  [0.8s]
+         1.5 ->  48.0%  (48/100)  [0.7s]
+  => PROMOTED OPT_RAISE_STACK_WEIGHT: 0.5 -> 0.75  (win rate 55.0%)
+
+[6/9] Tuning OPT_ALLIN_BASE_WEIGHT (current=3.0)
+  Candidates: [0.5, 1.0, 1.5, 2.0, 3.0]
+         0.5 ->  49.0%  (49/100)  [0.6s]
+         1.0 ->  44.0%  (44/100)  [0.8s]
+         1.5 ->  51.0%  (51/100)  [0.8s]
+         2.0 ->  43.0%  (43/100)  [0.8s]
+         3.0 -> (current, skip)
+  => No improvement for OPT_ALLIN_BASE_WEIGHT. Keeping 3.0.
+
+[7/9] Tuning OPT_ALLIN_POT_WEIGHT (current=1.25)
+  Candidates: [0.5, 0.75, 1.0, 1.25, 1.5]
+         0.5 ->  50.0%  (50/100)  [0.7s]
+  ✓     0.75 ->  58.0%  (58/100)  [0.7s]
+  ✓      1.0 ->  57.0%  (57/100)  [0.8s]
+        1.25 -> (current, skip)
+         1.5 ->  44.0%  (44/100)  [0.8s]
+  => PROMOTED OPT_ALLIN_POT_WEIGHT: 1.25 -> 0.75  (win rate 58.0%)
+
+[8/9] Tuning OPT_ACT_VAL_MONSTER_BASE_FRAC (current=0.7)
+  Candidates: [0.3, 0.4, 0.5, 0.6, 0.7]
+  ✓      0.3 ->  52.0%  (52/100)  [0.8s]
+         0.4 ->  49.0%  (49/100)  [0.7s]
+  ✓      0.5 ->  54.0%  (54/100)  [0.7s]
+         0.6 ->  48.0%  (48/100)  [0.8s]
+         0.7 -> (current, skip)
+  => PROMOTED OPT_ACT_VAL_MONSTER_BASE_FRAC: 0.7 -> 0.5  (win rate 54.0%)
+
+[9/9] Tuning OPT_ACT_VAL_MONSTER_EQ_MULT (current=1.5)
+  Candidates: [1.0, 1.5, 2.0, 2.5, 3.0]
+         1.0 ->  46.0%  (46/100)  [0.8s]
+         1.5 -> (current, skip)
+         2.0 ->  48.0%  (48/100)  [0.8s]
+         2.5 ->  49.0%  (49/100)  [0.7s]
+  ✓      3.0 ->  54.0%  (54/100)  [0.7s]
+  => PROMOTED OPT_ACT_VAL_MONSTER_EQ_MULT: 1.5 -> 3.0  (win rate 54.0%)
+
+[PASS 3 DONE] Improvements this pass: 7
+
+==============================================================
+ OPTIMIZATION COMPLETE
+==============================================================
+ Total improvements found: 22
+
+Optimal Hyperparameters (copy into HP struct defaults):
+
+  OPT_RAISE_BASE_WEIGHT                    = 0.5  <-- CHANGED
+  OPT_BLUFF_THRESH                         = 0.3  <-- CHANGED
+  OPT_MIN_FOLD_RATE                        = 0.35  <-- CHANGED
+  OPT_RAISE_POT_WEIGHT                     = 1.25  <-- CHANGED
+  OPT_RAISE_STACK_WEIGHT                   = 0.75  <-- CHANGED
+  OPT_ALLIN_BASE_WEIGHT                    = 3.0  <-- CHANGED
+  OPT_ALLIN_POT_WEIGHT                     = 0.75  <-- CHANGED
+  OPT_ACT_VAL_MONSTER_BASE_FRAC            = 0.5
+  OPT_ACT_VAL_MONSTER_EQ_MULT              = 3.0  <-- CHANGED
+
+Config saved to: best_hp_config.json
