@@ -1,3 +1,4 @@
+// Evaluates all 5-to-7 card combinations using prime product lookup
 #include <iostream>
 #include <vector>
 #include <array>
@@ -70,9 +71,9 @@ int main() {
         for(int r2=0; r2<=14; r2++) {
             if (r1 < 2 || r2 < 2) { printf("0.0,"); continue; }
             Card h0, h1;
-            if (r1 == r2) { h0 = {r1, 0}; h1 = {r2, 1}; } // Pair
-            else if (r1 > r2) { h0 = {r1, 0}; h1 = {r2, 0}; } // Suited: upper triangle
-            else { h0 = {r1, 0}; h1 = {r2, 1}; } // Offsuit: lower triangle
+            if (r1 == r2) { h0 = {r1, 0}; h1 = {r2, 1}; }
+            else if (r1 > r2) { h0 = {r1, 0}; h1 = {r2, 0}; }
+            else { h0 = {r1, 0}; h1 = {r2, 1}; }
 
             std::vector<Card> rem;
             for(auto& dc : deck) if(dc.rank != h0.rank || dc.suit != h0.suit) if(dc.rank != h1.rank || dc.suit != h1.suit) rem.push_back(dc);

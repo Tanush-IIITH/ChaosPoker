@@ -10,70 +10,72 @@ def run_match(engine_path: str, bots: List[str], target_bot_index: int) -> bool:
     """
     Runs a single match and returns True if the target_bot_index won, False otherwise.
     """
+    # Build the engine command with full hand history enabled
     cmd = [
         engine_path,
         "--history",
-        "1000", "5", "15", "25", "50",  # default config
+        "1000", "5", "15", "25", "50",
     ] + bots
 
+
     try:
-        # Run the game engine, timeout after 30 seconds just in case
+        # Execute process and wait for completion
         result = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True, timeout=30)
         output = result.stderr
-        
-        # Parse the output to find the winner from the human-readable history output
-        # E.g., ">> P0 wins 1200 chips (FLUSH)" or ">> P0, P1 split pot"
+
+        # Parse engine logs to find the winner
         for line in reversed(output.splitlines()):
             if "wins" in line and ">> " in line:
                 parts = line.split()
-                # Assuming format: ">> P0 wins ..."
+
                 if parts[1].startswith("P"):
                     winner_index = int(parts[1][1:])
                     return winner_index == target_bot_index
         return False
     except subprocess.TimeoutExpired:
-        print("x", end="", flush=True) # Indicate timeout
+        print("x", end="", flush=True)
         return False
     except Exception as e:
-        print(f"E", end="", flush=True) # Indicate error
+        print(f"E", end="", flush=True)
         return False
 
 def benchmark_scenario(name: str, engine_path: str, bots: List[str], target_bot_index: int, num_games: int) -> Tuple[str, int, int]:
     """
     Runs a scenario multiple times concurrently and returns the results.
     """
+    # Dispatch multiple games via a thread pool
     print(f"Running '{name}' ({num_games} games)... ", end="", flush=True)
     wins = 0
-    
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=os.cpu_count() or 4) as executor:
-        # Submit all games to the executor
         futures = [executor.submit(run_match, engine_path, bots, target_bot_index) for _ in range(num_games)]
-        
+
         for future in concurrent.futures.as_completed(futures):
             is_win = future.result()
             if is_win:
                 wins += 1
-            
-            # Print a progress dot
+
             print(".", end="", flush=True)
-            
+
     win_rate = (wins / num_games) * 100
     print(f" Done! {wins}/{num_games} ({win_rate:.1f}%)")
     return name, wins, num_games
 
 def main():
+    # Parse arguments and defaults
     parser = argparse.ArgumentParser(description="Benchmark a Chaos Poker bot.")
-    parser.add_argument("--bot", default="./bots/smart_bot", help="Path to the bot you want to test")
+    parser.add_argument("--bot", default="../bots/smart_bot", help="Path to the bot you want to test")
     parser.add_argument("--games", type=int, default=50, help="Number of games per scenario")
     parser.add_argument("--loops", type=int, default=1, help="Number of times to run the full benchmark suite")
-    parser.add_argument("--engine", default="./chaos_poker", help="Path to the chaos_poker engine")
+    parser.add_argument("--engine", default="../chaos_poker", help="Path to the chaos_poker engine")
     args = parser.parse_args()
 
     bot_under_test = args.bot
-    random_bot = "./bots/random_bot"
-    example_bot = "./bots/example_bot"
+    random_bot = "../bots/random_bot"
+    example_bot = "../bots/example_bot"
     engine = args.engine
 
+    # Validate prerequisites
     if not os.path.exists(engine) or not os.path.exists(bot_under_test):
         print(f"Error: Make sure the engine ({engine}) and bot ({bot_under_test}) exist.")
         print("Did you run 'make'?")
@@ -84,11 +86,12 @@ def main():
     print(f" Games per scenario: {args.games}")
     print(f"============================================================\n")
 
-    baseline_bot = "./bots/smart_bot_v3"
+    baseline_bot = "../bots/smart_bot_v2"
     if not os.path.exists(baseline_bot):
         print(f"Error: Baseline bot {baseline_bot} not found.")
         sys.exit(1)
 
+    # Construct seating configurations and matchups
     scenarios = []
     for i in range(1, 2):
         opponents = [baseline_bot] * i
@@ -104,7 +107,7 @@ def main():
                 name = f"{i+1}-Player vs {i} baseline (Seat {seat}, {pos_str})"
             else:
                 name = f"Heads-Up vs {i} baseline (Seat {seat})"
-                
+
             bots = list(opponents)
             bots.insert(seat, bot_under_test)
             scenarios.append((name, bots, seat))
@@ -116,44 +119,42 @@ def main():
             print(f"\n+++ BENCHMARK ITERATION {loop_idx + 1} OF {args.loops} +++\n")
 
         results = []
-        
-        # Run all scenarios
+
         for name, bots, target_idx in scenarios:
             res = benchmark_scenario(name, engine, bots, target_idx, args.games)
             results.append(res)
-            
-        # Print summary table
+
         print("\n============================================================")
         print(" SUMMARY REPORT")
         print("============================================================")
         print(f"{'Scenario':<40} | {'Win Rate':<10} | {'Wins/Games'}")
         print("-" * 65)
-        
+
         total_wins = 0
         total_games = 0
-        
+
         for name, wins, games in results:
             win_rate = (wins / games) * 100
             print(f"{name:<40} | {win_rate:>6.1f}%    | {wins}/{games}")
             total_wins += wins
             total_games += games
-            
-            # Record for grand total
+
             grand_totals[name]['wins'] += wins
             grand_totals[name]['games'] += games
-            
+
         overall_rate = (total_wins / total_games) * 100
         print("-" * 65)
         print(f"{'OVERALL':<40} | {overall_rate:>6.1f}%    | {total_wins}/{total_games}")
         print("============================================================\n")
 
+    # Output grand totals across all execution loops
     if args.loops > 1:
         print("\n" + "=" * 60)
         print(" GRAND TOTAL SUMMARY (ALL ITERATIONS)")
         print("=" * 60)
         print(f"{'Scenario':<40} | {'Win Rate':<10} | {'Wins/Games'}")
         print("-" * 65)
-        
+
         grand_overall_wins = 0
         grand_overall_games = 0
         for name, _, _ in scenarios:
@@ -163,7 +164,7 @@ def main():
             print(f"{name:<40} | {win_rate:>6.1f}%    | {w}/{g}")
             grand_overall_wins += w
             grand_overall_games += g
-            
+
         grand_overall_rate = (grand_overall_wins / grand_overall_games) * 100 if grand_overall_games > 0 else 0
         print("-" * 65)
         print(f"{'GRAND OVERALL':<40} | {grand_overall_rate:>6.1f}%    | {grand_overall_wins}/{grand_overall_games}")
