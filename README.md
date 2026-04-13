@@ -178,8 +178,3 @@ Bluffs are only fired when the average opponent aggression score is below `BLUFF
 | `bots/smart_bot.cpp` | Bot source — HP struct, card encoding, MC engine, PreFlop table, SWAP/VOTE/ACTION logic |
 | `tools/ck_tables.h` | Cactus Kev precomputed lookup tables (`flushes`, `unique5`, `prime_products`) |
 | `Makefile` | Build system |
-| `scripts/benchmark_bot.py` | Self-play benchmark (smart_bot vs smart_bot_v2 baseline) |
-| `scripts/benchmark_old.py` | Full benchmark vs random/example bots across all seat positions |
-| `scripts/tuner.py` | Coordinate-descent hyperparameter optimizer |
-| `scripts/latency_profiler.py` | Per-decision latency tester (verifies < 10ms) |
-| `best_hp_config.json` | Last saved optimal hyperparameter configuration |
