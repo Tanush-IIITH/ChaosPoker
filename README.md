@@ -56,38 +56,6 @@ The engine spawns the bot automatically. Pass the binary path as an argument:
 
 ---
 
-## How to Benchmark
-
-All scripts live in `scripts/`.
-
-```bash
-cd scripts/
-
-# Self-play: smart_bot vs smart_bot_v2 baseline (2 seats, N loops)
-python3 benchmark_bot.py --games 50 --loops 1
-
-# Full matrix: smart_bot vs random/example bots across all player counts and seat positions
-python3 benchmark_old.py --games 50
-
-# Per-decision latency check — verifies every decision stays under 10ms
-python3 latency_profiler.py
-```
-
----
-
-## How to Tune Hyperparameters
-
-```bash
-cd scripts/
-
-# Coordinate-descent optimizer — iterates over the SEARCH_SPACE in tuner.py
-python3 tuner.py
-```
-
-Results are saved to `best_hp_config.json`. After a successful run, promote winning values into the `Hyperparameters` struct defaults at the top of `bots/smart_bot.cpp` and recompile.
-
----
-
 ## Strategy
 
 ### 1. Hand Evaluation — Cactus Kev (O(1) Lookup)
