@@ -36,20 +36,11 @@ bots/smart_bot
 
 ## How to Run
 
-The engine spawns the bot automatically. Pass the binary path as an argument:
+The engine requires you to define the starting chip stack, the four street-specific swap multipliers (Pre-flop, Flop, Turn, River), and the paths to the bot executables.
 
+**Base Syntax:**
 ```bash
-# 2-player: smart_bot vs example_bot
-./chaos_poker 5 15 25 50 ./bots/smart_bot ./bots/example_bot
-
-# With full game history (1000 hands logged to stderr)
-./chaos_poker --history 1000 5 15 25 50 ./bots/smart_bot ./bots/example_bot
-```
-
-### Exact Launch Command
-
-```bash
-./bots/smart_bot
+./chaos_poker [--history] <starting_chips> <preflop_swap_mult> <flop_swap_mult> <turn_swap_mult> <river_swap_mult> <bot1_cmd> <bot2_cmd> [bot3_cmd ...]
 ```
 
 > The bot reads from `stdin` and writes to `stdout`. It must never print unprompted output.
